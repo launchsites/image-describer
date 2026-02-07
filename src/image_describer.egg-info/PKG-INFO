@@ -1,0 +1,69 @@
+Metadata-Version: 2.4
+Name: image-describer
+Version: 0.1.0
+Summary: CLI to describe images with llava-llama3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.31
+Requires-Dist: piexif>=1.1.3
+
+# image-describer
+
+Describe images from the CLI using a local llava-llama3 backend.
+
+## Install
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+Describe a single image:
+
+```bash
+describe /path/to/image.jpg
+```
+
+Describe all images in a folder (recursive by default):
+
+```bash
+describe /path/to/folder
+```
+
+Store both EXIF metadata (JPEG only) and a JSON index:
+
+```bash
+describe /path/to/folder --store both
+```
+
+## Backends
+
+Ollama (default):
+
+```bash
+describe /path/to/image.jpg \
+  --backend ollama \
+  --ollama-url http://localhost:11434 \
+  --ollama-model llava-llama3
+```
+
+vLLM (OpenAI-compatible endpoint):
+
+```bash
+describe /path/to/image.jpg \
+  --backend vllm \
+  --vllm-url http://localhost:8000/v1/chat/completions \
+  --vllm-model llava-llama3 \
+  --vllm-api-key token-abc123
+```
+
+llama.cpp:
+
+```bash
+describe /path/to/image.jpg \
+  --backend llama-cpp \
+  --llama-bin /path/to/llama-mtmd-cli \
+  --llama-model /path/to/llava-llama3.gguf \
+  --llama-mmproj /path/to/mmproj.gguf
+```

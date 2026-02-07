@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/describe/__init__.py
+src/describe/backends.py
+src/describe/cli.py
+src/describe/store.py
+src/image_describer.egg-info/PKG-INFO
+src/image_describer.egg-info/SOURCES.txt
+src/image_describer.egg-info/dependency_links.txt
+src/image_describer.egg-info/entry_points.txt
+src/image_describer.egg-info/requires.txt
+src/image_describer.egg-info/top_level.txt
