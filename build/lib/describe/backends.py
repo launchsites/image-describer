@@ -11,8 +11,13 @@ class BackendError(RuntimeError):
 
 
 def _image_to_base64(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode("ascii")
+    try:
+        with open(path, "rb") as f:
+            return base64.b64encode(f.read()).decode("ascii")
+    except PermissionError as exc:
+        raise BackendError(f"Permission denied reading image: {path}") from exc
+    except OSError as exc:
+        raise BackendError(f"Failed to read image: {path} ({exc})") from exc
 
 
 def _image_to_data_url(path):
